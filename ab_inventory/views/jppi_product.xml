@@ -1,0 +1,216 @@
+<odoo>
+  <data>
+
+  		<!-- TREE VIEW JPPI PRODUCT -->
+        <record id="jppi_product_tree" model="ir.ui.view">
+            <field name="name">jppi_product.tree</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <tree string="Stock On Hand">
+                    <field name="item_code"/>
+                    <field name="name"/>
+                    <field name="sub_inventory_id"/>
+                    <field name="qty_oh"/>
+                    <field name="uom_id"/>
+                    <field name="avg_cost"/>
+                    <field name="cost_amount" sum="Total Cost Amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- TREE VIEW JPPI SUB INVENTORY -->
+        <record id="jppi_subinventory_tree" model="ir.ui.view">
+            <field name="name">jppi_subinventory.tree</field>
+            <field name="model">jppi.subinventory</field>
+            <field name="arch" type="xml">
+                <tree string="Sub Inventory">
+                    
+                    <field name="short_name"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- TREE VIEW JPPI UOM -->
+        <record id="jppi_uom_tree" model="ir.ui.view">
+            <field name="name">jppi_uom.tree</field>
+            <field name="model">jppi.uom</field>
+            <field name="arch" type="xml">
+                <tree string="Uom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- FORM JPPI PRODUCT -->
+        <record id="jppi_product_form" model="ir.ui.view">
+            <field name="name">jppi_product.form</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <form string="Stock On Hand">
+                    <sheet>
+                    	<div class="oe_title">
+                            <span class="o_form_label" >Item Description</span>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                        	<group>
+	                            <field name="item_code"/>
+	                            <field name="sub_inventory_id"/>
+                                <field name="location_id"/>
+			                    <field name="qty_oh"/>
+			                    <field name="uom_id"/>
+			                </group>
+			                <group>
+			                    <field name="avg_cost"/>
+			                    <field name="cost_amount"/>
+			                </group>
+                        </group>
+                        <group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- FORM JPPI SUB INVENTORY -->
+        <record id="jppi_subinventory_form" model="ir.ui.view">
+            <field name="name">jppi_subinventory.form</field>
+            <field name="model">jppi.subinventory</field>
+            <field name="arch" type="xml">
+                <form string="Sub Inventory">
+                    <sheet>
+                    	<div class="oe_title">
+                            <span class="o_form_label" >Sub Inventory</span>
+                            <h1>
+                                <field name="short_name"/>
+                            </h1>
+                        </div>
+                        <group>
+                        	<group>
+	                            
+                                <field name="name"/>
+			                </group>
+			                <group>
+			                    <field name="partner_id"/>
+			                </group>
+                        </group>
+                        <group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- FORM JPPI UOM -->
+        <record id="jppi_uom_form" model="ir.ui.view">
+            <field name="name">jppi_uom.form</field>
+            <field name="model">jppi.uom</field>
+            <field name="arch" type="xml">
+                <form string="Uom">
+                    <sheet>
+                        <group>
+	                        <field name="name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- ACTION JPPI PRODUCT -->
+        <record id="action_jppi_product" model="ir.actions.act_window">
+            <field name="name">Stock On Hand</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ACTION JPPI SUB INVENTORY -->
+        <record id="action_jppi_subinventory" model="ir.actions.act_window">
+            <field name="name">Sub Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.subinventory</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ACTION JPPI UOM -->
+        <record id="action_jppi_uom" model="ir.actions.act_window">
+            <field name="name">Uom</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.uom</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ACTION JPPI LOCATION -->
+        <record id="action_jppi_location" model="ir.actions.act_window">
+            <field name="name">Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.location</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ACTION JPPI Master -->
+        <record id="action_jppi_master" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.master</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_monitoring_inventory" name="Monitoring Inventory" sequence="100"/>
+            <menuitem 
+            	id="menu_jppi_product" 
+            	name="Stock On Hand" 
+            	parent="menu_monitoring_inventory" 
+            	action="action_jppi_product"
+            	sequence="7"
+            />
+            <menuitem 
+            	id="menu_jppi_config" 
+            	name="Config" 
+            	parent="menu_monitoring_inventory" 
+            	action=""
+            	sequence="10"
+            />
+	            <menuitem 
+	            	id="menu_jppi_subinventory" 
+	            	name="Sub Inventory" 
+	            	parent="menu_jppi_config" 
+	            	action="action_jppi_subinventory"
+	            	sequence="10"
+	            />
+	            <menuitem 
+	            	id="menu_jppi_uom" 
+	            	name="Uom" 
+	            	parent="menu_jppi_config" 
+	            	action="action_jppi_uom"
+	            	sequence="9"
+	            />
+
+                <menuitem 
+                    id="menu_jppi_location" 
+                    name="Location" 
+                    parent="menu_jppi_config" 
+                    action="action_jppi_location"
+                    sequence="8"
+                />
+
+                <menuitem 
+                    id="menu_jppi_master" 
+                    name="Product" 
+                    parent="menu_jppi_config" 
+                    action="action_jppi_master"
+                    sequence="7"
+                />
+
+    </data>
+</odoo>

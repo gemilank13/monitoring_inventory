@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree Stock On Hand -->
+        <record id="stock_on_hand_tree" model="ir.ui.view">
+            <field name="name">jppi.product.tree</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <tree string="Stock On Hand">
+                    <field name="item_code"/>
+                    <field name="name"/>
+                    <field name="sub_inventory_id"/>
+                    <field name="qty_oh"/>
+                    <field name="uom_id"/>
+                    <field name="avg_cost"/>
+                    <field name="cost_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Act Tree Stock On Hand -->
+        <record id="act_stock_on_hand_tree" model="ir.actions.act_window">
+            <field name="name">Stock On Hand</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">tree</field>
+            <!-- <field name="domain">[('tgl','&gt;', (context_today() -
+                datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]
+            </field> -->
+            <field name="view_id" ref="stock_on_hand_tree"/>
+        </record>
+
+        <!-- Pie Stock On Hand-->
+        <record id="stock_on_hand_pie" model="ir.ui.view">
+            <field name="name">.jppi.product.pie</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <graph type="pie" string="Stock On Hand">
+                    <field name="sub_inventory_id"/>
+                    <field name="cost_amount" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+         <!-- Act Pie Stock On Hand -->
+        <record id="act_stock_on_hand_pie" model="ir.actions.act_window">
+            <field name="name">Stock On Hand</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">graph</field>
+            <!-- <field name="domain">[('tgl','&gt;', (context_today() -
+                datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]
+            </field> -->
+            <field name="view_id" ref="stock_on_hand_pie"/>
+        </record>
+
+
+        <!-- Pie Stock On Hand Cabang-->
+        <record id="stock_on_hand_location_pie" model="ir.ui.view">
+            <field name="name">.jppi.product.pie</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <graph type="pie" string="Stock On Hand/Location">
+                    <field name="location_id"/>
+                    <field name="cost_amount" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+         <!-- Act Pie Stock On Hand Cabang -->
+        <record id="act_stock_on_hand_location_pie" model="ir.actions.act_window">
+            <field name="name">Stock On Hand Location</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">graph</field>
+            <!-- <field name="domain">[('tgl','&gt;', (context_today() -
+                datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]
+            </field> -->
+            <field name="view_id" ref="stock_on_hand_location_pie"/>
+        </record>
+
+
+        <record id="view_stock_on_hand_pivot" model="ir.ui.view">
+            <field name="name">jppi.product.pivot</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <pivot string="Inventory Stock on Hand">
+                   <field name="location_id" type="row"/>
+                   <!-- <field name="order_id" type="row"/> -->
+                   <field name="cost_amount" type="measure"/>
+                   <!-- <field name="date:day" type="row"/> -->
+                   <field name="qty_oh" type="measure"/>
+                   <!-- <field name="item_code" type="col"/> -->
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Act Pivot Stock On Hand -->
+        <record id="act_stock_on_hand_pivot" model="ir.actions.act_window">
+            <field name="name">Stock on Hand Pivot</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">pivot</field>
+            <!-- <field name="domain">[('tgl','&gt;', (context_today() -
+                datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]
+            </field> -->
+            <field name="view_id" ref="view_stock_on_hand_pivot"/>
+        </record>
+
+
+        <!-- Bar Total Cost Amont-->
+        <record id="total_cost_amount_bar" model="ir.ui.view">
+            <field name="name">.jppi.product.pie</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Total Cost Amont">
+                    <field name="location_id"/>
+                    <field name="cost_amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Act Bar Stock On Hand -->
+        <record id="act_total_cost_amount_bar" model="ir.actions.act_window">
+            <field name="name">Total Cost Amont</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">graph</field>
+            <!-- <field name="domain">[('tgl','&gt;', (context_today() -
+                datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]
+            </field> -->
+            <field name="view_id" ref="total_cost_amount_bar"/>
+        </record>
+
+
+
+        <!-- Bar Trend Saldo Inv-->
+        <!-- <record id="trend_saldo_inv_bar" model="ir.ui.view">
+            <field name="name">.jppi.transaksi.bar</field>
+            <field name="model">jppi.transaksi</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Trend Saldo Inventory">
+                    <field name="tr_date"/>
+                    <field name="unit_price" type="measure"/>
+                </graph>
+            </field>
+        </record> -->
+
+        <!-- Act Bar Trend Saldo Inv -->
+        <!-- <record id="act_trend_saldo_inv_bar" model="ir.actions.act_window">
+            <field name="name">Trend Saldo Inventory</field>
+            <field name="res_model">jppi.transaksi</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="trend_saldo_inv_bar"/>
+        </record> -->
+
+
+
+        <record id="dashboard_monitoring_view" model="ir.ui.view">
+            <field name="name">Dashboard Monitoring</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard Monitoring">
+                    <board>
+                        <column>
+                            <action 
+                                string="Stock On Hand/Cabang"
+                                name="%(ab_inventory.act_stock_on_hand_location_pie)d"/>
+
+                            <!-- <action 
+                                string="Stock on Hand Pivot"
+                                name="%(ab_inventory.act_stock_on_hand_pivot)d"/>
+                        	 -->
+                        </column>
+                        <column>
+                            <action 
+                                string="Stock On Hand/Sub Inventory"
+                                name="%(ab_inventory.act_stock_on_hand_pie)d"/>
+
+                            <!-- <action 
+                                string="Total Cost Amont"
+                                name="%(ab_inventory.act_total_cost_amount_bar)d"/> -->
+                               
+                        </column>
+                    </board>
+
+                    <!-- <board>
+                        <column>
+                            <action 
+                                string="Stock on Hand Pivot"
+                                name="%(ab_inventory.act_stock_on_hand_pivot)d"/>
+                               
+                        </column>
+                        <column>
+                            <action 
+                                string="List Stock On Hand"
+                                name="%(ab_inventory.act_stock_on_hand_tree)d"/>
+                               
+                        </column> -->
+                    <!-- </board> -->
+
+                    <!-- <board>
+                        <column>
+                                <action 
+                                string="List Stock On Hand"
+                                name="%(ab_inventory.act_stock_on_hand_tree)d"/>
+                        </column>
+                    </board> -->
+                </form>
+            </field>
+        </record>
+
+        <record id="monitoring_board" model="ir.actions.act_window">
+            <field name="name">Dashboard Monitoring</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="dashboard_monitoring_view"/>
+        </record>
+
+        <menuitem
+            name="Dashboard"
+            parent="ab_inventory.menu_monitoring_inventory"
+            action="monitoring_board"
+            sequence="1"
+            id="menu_monitoring_board"/>
+
+    </data>
+</odoo>

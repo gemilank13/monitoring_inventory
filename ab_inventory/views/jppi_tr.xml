@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+
+  		<!-- TREE VIEW JPPI TR -->
+        <record id="jppi_tr_tree" model="ir.ui.view">
+            <field name="name">jppi_tr.tree</field>
+            <field name="model">jppi.tr</field>
+            <field name="arch" type="xml">
+                <tree string="Transaction Register">
+                    <field name="item_code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM JPPI TR -->
+        <record id="jppi_tr_form" model="ir.ui.view">
+            <field name="name">jppi_tr.form</field>
+            <field name="model">jppi.tr</field>
+            <field name="arch" type="xml">
+                <form string="Transaction Register">
+                    <sheet>
+                    	<div class="oe_title">
+                            <span class="o_form_label" >Item Description</span>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                        	<group>
+	                            <field name="item_code"/>
+                                <field name="sub_inventory_id"/>
+			                </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ACTION JPPI TR -->
+        <record id="action_jppi_tr" model="ir.actions.act_window">
+            <field name="name">Transaction Registeer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.tr</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+            	id="menu_jppi_tr" 
+            	name="Transaction Register" 
+            	parent="menu_monitoring_inventory" 
+            	action="action_jppi_tr"
+            	sequence="8"
+            />
+    </data>
+</odoo>

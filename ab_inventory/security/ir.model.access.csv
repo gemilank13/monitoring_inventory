@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jppi_product,jppi_product,model_jppi_product,,1,1,1,1
+access_jppi_subinventory,jppi_subinventory,model_jppi_subinventory,,1,1,1,1
+access_jppi_uom,jppi_uom,model_jppi_uom,,1,1,1,1
+access_jppi_location,jppi_location,model_jppi_location,,1,1,1,1
+access_jppi_master,jppi_master,model_jppi_master,,1,1,1,1
