@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jppi_transaksi,jppi_transaksi,model_jppi_transaksi,,1,1,1,1
+access_jppi_tr_type,jppi_tr_type,model_jppi_tr_type,,1,1,1,1
+access_jppi_wo_type,jppi_wo_type,model_jppi_wo_type,,1,1,1,1

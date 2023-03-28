@@ -1,0 +1,104 @@
+<odoo>
+  <data>
+        <!-- Bar Trend Saldo Inv-->
+        <record id="trend_saldo_inv_bar" model="ir.ui.view">
+            <field name="name">.jppi.transaksi.bar</field>
+            <field name="model">jppi.transaksi</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Trend Saldo Inventory">
+                    <field name="tr_date"/>
+                    <field name="unit_price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Act Bar Trend Saldo Inv -->
+        <record id="act_trend_saldo_inv_bar" model="ir.actions.act_window">
+            <field name="name">Trend Saldo Inventory</field>
+            <field name="res_model">jppi.transaksi</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="trend_saldo_inv_bar"/>
+        </record>
+        
+  		<!-- TREE VIEW JPPI TR -->
+        <record id="jppi_transaksi_tree" model="ir.ui.view">
+            <field name="name">jppi_transaksi.tree</field>
+            <field name="model">jppi.transaksi</field>
+            <field name="arch" type="xml">
+                <tree string="Transaction Register">
+                    <field name="sub_inventory_id"/>
+                    <field name="tr_date"/>
+                    <field name="tr_type_id"/>
+                    <field name="no_wo"/>
+                    <field name="no_ttb"/>
+                    <field name="asset"/>
+                    <field name="wo_type_id"/>
+                    <field name="item_code"/>
+                    <field name="name"/>
+                    <field name="uom_id"/>
+                    <field name="qty_receive"/>
+                    <field name="qty_issue"/>
+                    <field name="keterangan"/>
+                    <field name="unit_price"/>
+                    <field name="value_receive"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM JPPI TR -->
+        <record id="jppi_transaksi_form" model="ir.ui.view">
+            <field name="name">jppi_transakasi.form</field>
+            <field name="model">jppi.transaksi</field>
+            <field name="arch" type="xml">
+                <form string="Transaction Register">
+                    <sheet>
+                    	<div class="oe_title">
+                            <span class="o_form_label" >Item Description</span>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                        	<group>
+	                            <field name="item_code"/>
+                                <field name="tr_date"/>
+                                <field name="sub_inventory_id"/>
+                                <field name="tr_type_id"/>
+                                <field name="no_wo"/>
+                                <field name="no_ttb"/>
+                                <field name="asset"/>
+                                <field name="uom_id"/>
+                                <field name="wo_type_id"/>
+                                <field name="qty_receive"/>
+                                <field name="qty_issue"/>
+                                <field name="keterangan"/>
+                                <field name="unit_price"/>
+                                <field name="value_receive"/>
+			                </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ACTION JPPI Master -->
+        <record id="action_jppi_transaksi" model="ir.actions.act_window">
+            <field name="name">Transaction Register</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.transaksi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ACTION JPPI Master -->
+        <record id="action_jppi_tr_type" model="ir.actions.act_window">
+            <field name="name">Transaction Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jppi.tr.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_jppi_transaksi" name="Transaction Register" parent="ab_inventory.menu_monitoring_inventory" action="action_jppi_transaksi" sequence="8"/>
+
+        <menuitem id="menu_jppi_tr_type" name="Transaction Type" parent="ab_inventory.menu_jppi_config" action="action_jppi_tr_type" sequence="8"/>
+    </data>
+</odoo>

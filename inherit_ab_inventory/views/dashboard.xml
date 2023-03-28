@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Pie Stock On Hand-->
+        <record id="stock_on_hand_pie" model="ir.ui.view">
+            <field name="name">.jppi.product.pie</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <graph type="pie" string="Stock On Hand">
+                    <field name="sub_inventory_id"/>
+                    <field name="cost_amount" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+         <!-- Act Pie Stock On Hand -->
+        <record id="act_stock_on_hand_pie" model="ir.actions.act_window">
+            <field name="name">Stock On Hand</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="stock_on_hand_pie"/>
+        </record>
+
+
+		<!-- Pie Stock On Hand Cabang-->
+        <record id="stock_on_hand_location_pie" model="ir.ui.view">
+            <field name="name">.jppi.product.pie</field>
+            <field name="model">jppi.product</field>
+            <field name="arch" type="xml">
+                <graph type="pie" string="Stock On Hand/Location">
+                    <field name="location_id"/>
+                    <field name="cost_amount" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+         <!-- Act Pie Stock On Hand Cabang -->
+        <record id="act_stock_on_hand_location_pie" model="ir.actions.act_window">
+            <field name="name">Stock On Hand Location</field>
+            <field name="res_model">jppi.product</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="stock_on_hand_location_pie"/>
+        </record>
+
+        <!-- Bar Trend Saldo Inv-->
+        <record id="trend_saldo_inv_bar" model="ir.ui.view">
+            <field name="name">.jppi.transaksi.bar</field>
+            <field name="model">jppi.transaksi</field>
+            <field name="arch" type="xml">
+                <graph type="bar" string="Trend Saldo Inventory">
+                    <field name="tr_date"/>
+                    <field name="unit_price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Act Bar Trend Saldo Inv -->
+        <record id="act_trend_saldo_inv_bar" model="ir.actions.act_window">
+            <field name="name">Trend Saldo Inventory</field>
+            <field name="res_model">jppi.transaksi</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="trend_saldo_inv_bar"/>
+        </record>
+
+
+
+        <record id="dashboard_monitoring_view" model="ir.ui.view">
+            <field name="name">Dashboard Monitoring</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard Monitoring">
+                    <board>
+                        <column>
+                            <action 
+                                string="Trend Saldo Inventory"
+                                name="%(inherit_ab_inventory.act_trend_saldo_inv_bar)d"/>
+                        </column>
+                    </board>
+
+                    <board>
+                        <column>
+                            <action 
+                                string="Stock On Hand/Cabang"
+                                name="%(inherit_ab_inventory.act_stock_on_hand_location_pie)d"/>
+                        </column>
+                        <column>
+                            <action 
+                                string="Stock On Hand/Sub Inventory"
+                                name="%(inherit_ab_inventory.act_stock_on_hand_pie)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="monitoring_board" model="ir.actions.act_window">
+            <field name="name">Dashboard Monitoring</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="dashboard_monitoring_view"/>
+        </record>
+
+        <menuitem
+            name="Dashboard"
+            parent="ab_inventory.menu_monitoring_inventory"
+            action="monitoring_board"
+            sequence="1"
+            id="menu_monitoring_board"/>
+
+    </data>
+</odoo>
